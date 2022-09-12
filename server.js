@@ -13,6 +13,4 @@ app.get('/', async (req, res)=> {
     res.send(data);
 })
 
-app.listen(port, () => {
-    console.log("The server is started running at port 3000");
-})
+app.listen(port);

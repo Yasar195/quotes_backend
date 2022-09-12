@@ -1,13 +1,16 @@
 const { Client } = require('pg');
 
-const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'quotes',
-    password: 'yasar',
-    port: '5432'
-})
+let client
 
-client.connect()
+try{
+    const connectionString = 'postgres://yasar:Tt0ADoZwaJa7zoPTShB7FQW0a8IZAApJ@dpg-cces9r9a6gdgjihdh4qg-a.singapore-postgres.render.com/quotes_1295?ssl=true'
+    client = new Client({
+        connectionString: connectionString
+    })
+    client.connect()
+}
+catch(error){
+    console.error(error);
+}
 
 module.exports = client;
