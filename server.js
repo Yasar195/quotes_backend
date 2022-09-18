@@ -2,6 +2,7 @@ const express = require('express');
 const query = require('./query.js');
 const cors = require('cors');
 const getRandomQoutes = query.getRandomQoutes;
+const getIndex = query.getIndex;
 const app = express()
 const port = process.env.PORT || 3000
 const fs = require('fs')
@@ -13,10 +14,10 @@ const base64_encode = (file) => {
     return new Buffer.from(bitmap).toString('base64');
 }
 
-app.get('/', (request, response)=> {
-    const index = Math.floor((Math.random() * 16) + 1);
-    getRandomQoutes(index)
+app.get('/', async (request, response)=> {
+    getRandomQoutes()
     .catch((msg)=> {
+        console.log('i ran')
         response.send({"message": msg})
     }).then((res)=> {
         let base64 = "data:image/webp;base64,"
